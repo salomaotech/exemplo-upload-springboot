@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="estilo.css"/>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    </head>
+    <body>
+
+        <form id="form-demo">
+            <input type="file" id="image" name="image"><br><br>
+            <button id="button-send">Send</button>
+        </form>
+
+        <div id="message"></div>
+
+        <script>
+
+            $(document).ready(function () {
+                $("#button-send").click(sendFormData);
+            });
+
+            function sendFormData() {
+
+                var fileInput = document.getElementById('image');
+                var file = fileInput.files[0];
+
+                if (!file) {
+
+                    $("#message").html("Por favor, selecione um arquivo.");
+                    return;
+
+                }
+
+                var formData = new FormData();
+                formData.append("file", file);
+
+                var ajaxUrl = "/upload";
+
+                $.ajax({
+
+                    url: ajaxUrl,
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function () {
+
+                        $("#message").html("Upload concluído com sucesso.");
+
+                    },
+                    error: function () {
+
+                        $("#message").html("Erro ao fazer o upload da imagem.");
+
+                    },
+                    complete: function () {
+
+                    }
+
+                });
+            }
+        </script>
+
+    </body>
+</html>
