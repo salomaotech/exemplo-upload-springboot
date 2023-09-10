@@ -8,20 +8,10 @@
     </head>
     <body>
 
-        <form th:action="@{/upload}" enctype="multipart/form-data" method="POST">
-
-            <div th:each="imagem : ${imagens}">
-
-                <img th:src="@{${imagem}}" class="imagem">
-
-            </div>
-
-            <input type="file" name="file">
-            <br>
-            <br>
-            <input type="submit" value="Enviar foto">
-
-        </form>
+        <header class="o-header">1</header>
+        <aside class="o-aside">2</aside>
+        <main class="o-main">3</main>
+        <footer class="o-footer">4</footer>
 
     </body>
 </html>
